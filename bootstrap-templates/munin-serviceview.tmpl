@@ -1,0 +1,108 @@
+<TMPL_INCLUDE NAME="partial/head.tmpl">
+<body>
+<div id="main">
+<TMPL_INCLUDE NAME="partial/navigation.tmpl">
+<div class="container">
+<h2><span class="label label-primary">Service graphs</span></h2>
+
+
+<TMPL_LOOP NAME="SERVICES">
+<table>
+<tr>
+  <td><a href="<TMPL_VAR NAME="ZOOMDAY">">
+		<img src="<TMPL_VAR NAME="IMGDAY">" 
+		 alt="daily graph"
+		 class="i<TMPL_IF NAME="STATE_WARNING">warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL">crit</TMPL_IF> img-thumbnail"
+		 />
+  </a></td>
+  <td><a href="<TMPL_VAR NAME="ZOOMWEEK">">
+		<img src="<TMPL_VAR NAME="IMGWEEK">" 
+		 alt="weekly graph" 
+		 class="i<TMPL_IF NAME="STATE_WARNING">warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL">crit</TMPL_IF> img-thumbnail"
+		 />
+  </a></td>
+</tr>
+<tr>
+  <td><a href="<TMPL_VAR NAME="ZOOMMONTH">">
+		<img src="<TMPL_VAR NAME="IMGMONTH">" 
+		 alt="monthly graph" 
+		 class="i<TMPL_IF NAME="STATE_WARNING">warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL">crit</TMPL_IF> img-thumbnail"
+		 />
+  </a></td>
+  <td><a href="<TMPL_VAR NAME="ZOOMYEAR">">
+		<img src="<TMPL_VAR NAME="IMGYEAR">" 
+		 alt="yearly graph" 
+		 class="i<TMPL_IF NAME="STATE_WARNING">warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL">crit</TMPL_IF> img-thumbnail"
+		 />
+  </a></td>
+</tr>
+    <!-- .sum graphs.  One of the least used features of munin? -->
+<TMPL_IF NAME="IMGWEEKSUM">
+  <tr>
+	<td><img src="<TMPL_VAR NAME="IMGWEEKSUM">" 
+		alt="summed weekly graph" 
+		<TMPL_IF NAME="IMGWEEKSUMWIDTH">width="<TMPL_VAR NAME="IMGWEEKSUMWIDTH">" </TMPL_IF> 
+		<TMPL_IF NAME="IMGWEEKSUMHEIGHT">height="<TMPL_VAR NAME="IMGWEEKSUMHEIGHT">"</TMPL_IF>/>
+	</td>
+	<td><img src="<TMPL_VAR NAME="IMGWEEKSUM">" 
+		alt="summed weekly graph" 
+		<TMPL_IF NAME="IMGWEEKSUMWIDTH">width="<TMPL_VAR NAME="IMGWEEKSUMWIDTH">" </TMPL_IF> 
+		<TMPL_IF NAME="IMGWEEKSUMHEIGHT">height="<TMPL_VAR NAME="IMGWEEKSUMHEIGHT">"</TMPL_IF>/>
+	</td>
+  </tr>
+</TMPL_IF>
+</table>	
+
+
+<h2><span class="label label-primary"><i class="fa fa-info-circle"></i> Graph Information</span></h2>
+<TMPL_LOOP NAME="GRAPHINFO">
+<!-- Do we actually allow mutiple graph_info, or is this just to access the nested data? -->
+<div class="well well-sm"><strong><TMPL_VAR NAME="info"></strong></div>
+</TMPL_LOOP>
+
+<TMPL_IF NAME="STATE_WARNING">
+<div class="alert alert-warning"><strong>Note:</strong> This service is in WARNING state because one of the values reported is outside the allowed range.  Please see further down for information about the ranges and the graph for the values.</div>
+</TMPL_IF>
+
+<TMPL_IF NAME="STATE_CRITICAL">
+<div class="alert alert-danger"><strong>Note:</strong> This service is in CRITICAL state because one of the values reported is outside the allowed range.  Please see further down for information about the ranges and the graph for the values.</div>
+</TMPL_IF>
+
+<TMPL_IF NAME="STATE_UNKNOWN"><p class='unknown'><strong>Note:</strong> This service is in UNKNOWN state, because something bad happened.  Please check your network, the munin-node, and the plugin.
+</p>
+</TMPL_IF>
+
+<table id="legend" class="table">
+<tr>
+	<th>Field</th>
+	<th><span title="For use in munin.conf">Internal name</span></th>
+	<th><a href="<TMPL_VAR ESCAPE="URL" NAME="R_PATH">/static/definitions.html#data_types">Type</a></th>
+	<th>Warn</th>
+	<th>Crit</th>
+	<th>Info</th>
+</tr>
+<TMPL_LOOP NAME="FIELDINFO">
+<tr class="<TMPL_IF NAME="__odd__">oddrow<TMPL_ELSE>evenrow</TMPL_IF><TMPL_IF NAME="__last__"> lastrow</TMPL_IF">">
+	<td><TMPL_VAR ESCAPE="HTML" NAME="LABEL"></td>
+    <td><span title="For use in munin.conf"><TMPL_VAR ESCAPE="HTML" NAME="FIELD"></span></td>
+    <td><TMPL_VAR NAME="TYPE"></td>
+    <td><TMPL_IF NAME="STATE_WARNING"><div class='warntext'></TMPL_IF><TMPL_VAR NAME="WARN"><TMPL_IF NAME="STATE_WARNING"></div><TMPL_ELSE>&nbsp;</TMPL_IF></td>
+    <td><TMPL_IF NAME="STATE_CRITICAL"><div class='crittext'></TMPL_IF><TMPL_VAR NAME="CRIT"><TMPL_IF NAME="STATE_CRITICAL"></div><TMPL_ELSE>&nbsp;</TMPL_IF></td>
+    <td><TMPL_IF NAME="INFO"><TMPL_VAR ESCAPE="HTML" NAME="INFO"><TMPL_ELSE>&nbsp;</TMPL_IF></td>
+</tr>
+<TMPL_IF NAME="EXTINFO">
+<tr class="<TMPL_IF NAME="__odd__">oddrow<TMPL_ELSE>evenrow</TMPL_IF>">
+  <td class='wrap' colspan="6" align='left' valign='top'>
+    This field has the following extra information: <TMPL_VAR ESCAPE="HTML" NAME="EXTINFO">
+</td></tr>
+</TMPL_IF>
+</TMPL_LOOP>
+</table>
+
+</TMPL_LOOP> <!-- services -->
+</div>
+</div>
+<TMPL_INCLUDE NAME="partial/footer.tmpl">
+</body>
+</html>
+  

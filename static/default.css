@@ -1,0 +1,113 @@
+body {
+    background: #333;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    color: #dddddd;
+    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #2d6ca2;
+    text-shadow: 1px 1px 2px rgba(0,0,0, 0.8);
+    font-weight: 900;
+}
+
+.logo {
+     background-image: url(logo-h20.png);
+     width: 115px;
+}
+
+.heading {
+    margin-bottom: 28px;
+}
+
+/* PANELS */
+.panel-heading a {
+    color: #fff;
+}
+
+.panel-body {
+    background-color: #222;
+}
+
+/*  List groups */
+
+.list-group-item {
+    background-color: #111;
+}
+
+/* ------ TABS ------ */
+.nav>li>a.small-tab {
+    padding: 5px 12px;
+}
+
+.nav-tabs>li>a:first-letter, .nav-tabs>li.active>a:first-letter {
+    text-transform: uppercase;
+}
+
+.nav-tabs>li>a {
+    font-size: 12px;
+    background-color: #444;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0, 0.7);
+    border-bottom: 1px solid #ddd;
+}
+
+ .nav-tabs>li>a:hover, .nav-tabs>li>a:focus {
+   color: #ccc;
+    background-color: #555;
+ }
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    font-weight: bold;
+    color: #ddd;
+    background-color: #6B6B6B;
+}
+
+.tab-content {
+    background-color: #6B6B6B;
+    padding: 15px 0px 20px 0px;
+    border-radius: 0px 0px 8px 8px;
+    border: 1px solid #ddd;
+    border-top-color: transparent;
+}
+
+
+.icrit {
+    border: 4px dashed red;
+}
+
+
+th {
+    background-color: #555;
+    color: #e5e5e5;
+    text-shadow: 1px 1px 3px rgba(0,0,0, 0.8);
+}
+
+
+.well {
+    color: #333;
+}
+
+img { 
+    filter: invert(1) !important;
+    -webkit-filter: invert(1) !important;
+    -moz-filter: invert(1) !important;
+    margin-bottom: 5px;
+ }
+
+a span .cap:first-letter {
+    text-transform: uppercase;
+}
+
+
+#footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    border-top: 1px solid #fff;
+    font-size: 12px;
+    padding: 3px 12px;
+    background: rgba(0,0,0, 0.9);
+    box-shadow: 0px 0px 3px 1px rgba(0,0,0, 0.5);
+}

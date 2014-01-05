@@ -1,0 +1,53 @@
+<TMPL_INCLUDE NAME="partial/head.tmpl">
+<body>
+<TMPL_INCLUDE NAME="partial/navigation.tmpl">
+<div class="container">
+    <div class="row">
+    
+    <h2><span class="label label-primary"><i class="fa fa-sitemap"></i> Node view</span></h2>
+
+     <ul id="muninTabs" class="nav nav-tabs">
+        <TMPL_LOOP NAME="CATEGORIES">
+          <li><a href="#<TMPL_VAR ESCAPE="HTML" NAME="NAME">" data-toggle="tab" class="small-tab"><span class="cap"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></span></a></li>
+        </TMPL_LOOP>
+      </ul>
+
+        <div class="tab-content">
+        <TMPL_LOOP NAME="CATEGORIES">
+            <!-- <h3 id="<TMPL_VAR ESCAPE="HTML" NAME="NAME">"><TMPL_VAR ESCAPE="HTML" NAME="PARENT"></h3> -->
+            
+            <div class="tab-pane fade" id="<TMPL_VAR ESCAPE="HTML" NAME="NAME">">
+            <div class="row">
+            	<TMPL_LOOP NAME="SERVICES">
+            		<div class="col-lg-6 text-center">
+            		<a href="<TMPL_VAR NAME="URLX">">
+            		<img class="i<TMPL_IF NAME="STATE_WARNING">warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL">crit</TMPL_IF> img-thumbnail"
+            		 src="<TMPL_VAR NAME="IMGDAY">"
+            		 alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
+            		 />
+        	    	</a></div>
+        
+                    <div class="col-lg-6 text-center">
+                    <a href="<TMPL_VAR NAME="URLX">">
+            		<img class="i<TMPL_IF NAME="STATE_WARNING">warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL">crit</TMPL_IF> img-thumbnail img-responsive"
+            		 src="<TMPL_VAR NAME="IMGWEEK">" 
+            		 alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
+            		 />
+            		</a>
+   	            	</div>
+               	</TMPL_LOOP>
+            </div> <!-- row -->
+            </div> <!-- tab-pane -->
+
+        </TMPL_LOOP>
+        </div><!-- tab-content -->
+    </div><!-- row -->
+</div><!-- container -->
+<TMPL_INCLUDE NAME="partial/footer.tmpl">
+
+<script>
+    $('#muninTabs a:first').tab('show')
+</script>
+
+</body>
+</html>
